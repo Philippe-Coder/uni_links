@@ -51,10 +51,6 @@ public class UniLinksPlugin
         return new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                // NOTE: assuming intent.getAction() is Intent.ACTION_VIEW
-
-                // Log.v("uni_links", String.format("received action: %s", intent.getAction()));
-
                 String dataString = intent.getDataString();
 
                 if (dataString == null) {
@@ -80,20 +76,7 @@ public class UniLinksPlugin
         eventChannel.setStreamHandler(plugin);
     }
 
-    /** Plugin registration. */
-    public static void registerWith(@NonNull PluginRegistry.Registrar registrar) {
-        // Detect if we've been launched in background
-        if (registrar.activity() == null) {
-            return;
-        }
-
-        final UniLinksPlugin instance = new UniLinksPlugin();
-        instance.context = registrar.context();
-        register(registrar.messenger(), instance);
-
-        instance.handleIntent(registrar.context(), registrar.activity().getIntent());
-        registrar.addNewIntentListener(instance);
-    }
+    // Supprimé la méthode registerWith
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {}
